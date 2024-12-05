@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Path
+from typing import Optional
 
 app = FastAPI()
 
@@ -17,7 +18,7 @@ async def get_student(student_id: int = Path(description="The ID of the student"
 
 
 @app.get("/get-by-name")
-async def get_student_by_name(name: str):
+async def get_student_by_name(name: Optional[str] = None):
     for student_id in student:
         if student[student_id]["name"] == name:
             return student[student_id]
